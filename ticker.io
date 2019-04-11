@@ -7,8 +7,8 @@ SSD1306  display(0x3c, D1, D2);
 
 
 // Previous Bitcoin value & threshold
-float previousValue = 0.000;
-float threshold = 0.001;
+float previousValue = 0.0000;
+float threshold = 0.0001;
 
 // WiFi settings
 const char* ssid     = "xxxx";
@@ -126,7 +126,7 @@ void loop() {
 
   // Get rate as float
   int rateIndex = jsonAnswer.indexOf("rate_float");
-  String priceString = jsonAnswer.substring(rateIndex + 12, rateIndex + 20);
+  String priceString = jsonAnswer.substring(rateIndex + 12, rateIndex + 21);
   priceString.trim();
   float price = priceString.toFloat();
 
