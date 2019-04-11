@@ -11,8 +11,8 @@ float previousValue = 0.0000;
 float threshold = 0.0001;
 
 // WiFi settings
-const char* ssid     = "xxxx";
-const char* password = "xxxx";
+const char* ssid     = "Apple Network";
+const char* password = "jamietom";
 
 // API server
 const char* host = "api.coindesk.com";
@@ -110,30 +110,18 @@ void loop() {
   String jsonAnswer;
   int jsonIndex;
 
-  for (int i = 0; i < answer.length(); i++) {
-    if (answer[i] == '{') {
-      jsonIndex = i;
-      break;
-    }
-  }
 
-  // Get JSON data
-  jsonAnswer = answer.substring(jsonIndex);
-  Serial.println();
-  Serial.println("JSON answer: ");
-  Serial.println(jsonAnswer);
-  jsonAnswer.trim();
 
-  // Get rate as float
-  int rateIndex = jsonAnswer.indexOf("rate_float");
-  String priceString = jsonAnswer.substring(rateIndex + 12, rateIndex + 21);
-  priceString.trim();
-  float price = priceString.toFloat();
+// Get Rate as Float
+int rateIndex = answer.indexOf("rate_float");  // Get the index of the start of the rate info
+String priceString = answer.substring(rateIndex + 12, rateIndex + 20);  // Select only the rate data
+priceString.trim();  // Remove any leading/trailing white spaces
+float price = priceString.toFloat();  // Convert the string to a number
 
-  // Print price
-  Serial.println();
-  Serial.println("Bitcoin price: ");
-  Serial.println(price);
+// Print it to the display
+Serial.println(); 
+Serial.println("Bitcoin price: "); 
+Serial.println(price);
 
   // Display on OLED
   display.clear();
