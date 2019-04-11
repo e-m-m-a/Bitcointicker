@@ -7,7 +7,7 @@ SSD1306  display(0x3c, D1, D2);
 
 
 // Previous Bitcoin value & threshold
-float previousValue = 0.00;
+float previousValue = 0.000;
 float threshold = 0.001;
 
 // WiFi settings
@@ -140,8 +140,8 @@ void loop() {
   display.setFont(ArialMT_Plain_16);
   display.drawString(0, 0, "Bitcoin Price:");
   display.setFont(ArialMT_Plain_24);
-  display.drawString(10, 20, "$");
-  display.drawString(26, 20, priceString);
+  display.drawString(0, 22, "$");
+  display.drawString(16, 22, priceString);
   display.display();
 
   // Init previous value 
@@ -154,7 +154,7 @@ void loop() {
 
     // show down
   display.setFont(ArialMT_Plain_10);
-  display.drawString(0, 45, "Down");
+  display.drawString(0, 52, "Down. Hodl.");
   display.display();
     
   }
@@ -164,7 +164,7 @@ void loop() {
 
     // Write to screen
   display.setFont(ArialMT_Plain_10);
-  display.drawString(0, 45, "Up");
+  display.drawString(0, 52, "Up. Hodl.");
   display.display();
   }
 
