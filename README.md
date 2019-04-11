@@ -2,4 +2,4 @@ This is a simple ticker for the D-Droid ESP8266 which is sold under various guis
 eg. https://www.banggood.com/Wemos-Nodemcu-Wifi-For-Arduino-And-NodeMCU-ESP8266-0_96-Inch-OLED-Board-p-1154759.html
 
 
-https://github.com/e-m-m-a/Bitcointicker/blob/master/ticker.jpg
+<img src="https://github.com/e-m-m-a/Bitcointicker/blob/master/ticker.jpg">
