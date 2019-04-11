@@ -11,8 +11,8 @@ float previousValue = 0.00;
 float threshold = 0.001;
 
 // WiFi settings
-const char* ssid     = "Apple Network";
-const char* password = "jamietom";
+const char* ssid     = "ssid";
+const char* password = "pass";
 
 // API server
 const char* host = "api.coindesk.com";
