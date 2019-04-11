@@ -7,12 +7,12 @@ SSD1306  display(0x3c, D1, D2);
 
 
 // Previous Bitcoin value & threshold
-float previousValue = 0.0;
+float previousValue = 0.00;
 float threshold = 0.001;
 
 // WiFi settings
-const char* ssid     = "ssid";
-const char* password = "password";
+const char* ssid     = "xxxx";
+const char* password = "xxx";
 
 // API server
 const char* host = "api.coindesk.com";
@@ -162,7 +162,7 @@ void loop() {
   // Alert up ?
   if (price > (previousValue + threshold)) {
 
-    // Flash LED
+    // Write to screen
   display.setFont(ArialMT_Plain_10);
   display.drawString(0, 45, "Up");
   display.display();
