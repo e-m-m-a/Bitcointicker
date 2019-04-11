@@ -5,22 +5,25 @@
 
 SSD1306  display(0x3c, D1, D2);
 
-// LED pins
-#define LED_PIN_UP 4
-#define LED_PIN_DOWN 5
 
 // Previous Bitcoin value & threshold
 float previousValue = 0.0;
-float threshold = 0.05;
+float threshold = 0.001;
 
 // WiFi settings
-const char* ssid     = "Apple Network";
-const char* password = "jamietom";
+const char* ssid     = "ssid";
+const char* password = "password";
 
 // API server
 const char* host = "api.coindesk.com";
 
 void setup() {
+
+
+//show life
+
+  pinMode(LED_BUILTIN, OUTPUT);     // Initialize the LED_BUILTIN pin as an output
+
 
   // Serial
   Serial.begin(115200);
@@ -32,9 +35,6 @@ void setup() {
   display.clear();
   display.display();
 
-  // LED pins as output
-  pinMode(LED_PIN_DOWN, OUTPUT);
-  pinMode(LED_PIN_UP, OUTPUT);
 
   // We start by connecting to a WiFi network
   Serial.println();
@@ -55,6 +55,7 @@ void setup() {
   Serial.println(WiFi.localIP());
 }
 
+
 void loop() {
 
   // Connect to API
@@ -68,6 +69,14 @@ void loop() {
     Serial.println("connection failed");
     return;
   }
+  
+//blink
+
+  digitalWrite(LED_BUILTIN, LOW);   // Turn the LED on by making the voltage LOW
+  delay(100);                      // Wait for a second
+  digitalWrite(LED_BUILTIN, HIGH);  // Turn the LED off by making the voltage HIGH
+  delay(2000);                      // Wait for two seconds
+
   
   // We now create a URI for the request
   String url = "/v1/bpi/currentprice.json";
@@ -128,7 +137,10 @@ void loop() {
 
   // Display on OLED
   display.clear();
+  display.setFont(ArialMT_Plain_16);
+  display.drawString(0, 0, "Bitcoin Price:");
   display.setFont(ArialMT_Plain_24);
+  display.drawString(10, 20, "$");
   display.drawString(26, 20, priceString);
   display.display();
 
@@ -140,14 +152,10 @@ void loop() {
   // Alert down ?
   if (price < (previousValue - threshold)) {
 
-    // Flash LED
-    digitalWrite(LED_PIN_DOWN, HIGH);
-    delay(100);
-    digitalWrite(LED_PIN_DOWN, LOW);
-    delay(100);
-    digitalWrite(LED_PIN_DOWN, HIGH);
-    delay(100);
-    digitalWrite(LED_PIN_DOWN, LOW);
+    // show down
+  display.setFont(ArialMT_Plain_10);
+  display.drawString(0, 45, "Down");
+  display.display();
     
   }
 
@@ -155,14 +163,9 @@ void loop() {
   if (price > (previousValue + threshold)) {
 
     // Flash LED
-    digitalWrite(LED_PIN_UP, HIGH);
-    delay(100);
-    digitalWrite(LED_PIN_UP, LOW);
-    delay(100);
-    digitalWrite(LED_PIN_UP, HIGH);
-    delay(100);
-    digitalWrite(LED_PIN_UP, LOW);
-    
+  display.setFont(ArialMT_Plain_10);
+  display.drawString(0, 45, "Up");
+  display.display();
   }
 
   // Store value
