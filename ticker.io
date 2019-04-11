@@ -11,8 +11,8 @@ float previousValue = 0.00;
 float threshold = 0.001;
 
 // WiFi settings
-const char* ssid     = "xxxx";
-const char* password = "xxx";
+const char* ssid     = "Apple Network";
+const char* password = "jamietom";
 
 // API server
 const char* host = "api.coindesk.com";
@@ -126,7 +126,7 @@ void loop() {
 
   // Get rate as float
   int rateIndex = jsonAnswer.indexOf("rate_float");
-  String priceString = jsonAnswer.substring(rateIndex + 12, rateIndex + 18);
+  String priceString = jsonAnswer.substring(rateIndex + 12, rateIndex + 19);
   priceString.trim();
   float price = priceString.toFloat();
 
@@ -171,6 +171,6 @@ void loop() {
   // Store value
   previousValue = price;
 
-  // Wait 5 seconds
+  // Wait 5 Secondse
   delay(5000);
 }
